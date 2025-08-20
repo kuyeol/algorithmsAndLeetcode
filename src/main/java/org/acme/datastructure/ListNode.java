@@ -1,4 +1,4 @@
-package org.acme;
+package org.acme.datastructure;
 
 public class ListNode {
 

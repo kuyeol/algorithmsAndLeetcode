@@ -1,13 +1,26 @@
 package org.acme.sort;
 
-import org.acme.ListNode;
+import org.acme.datastructure.ListNode;
 
-import java.util.LinkedList;
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class ListNodeMergeSort {
 
   @SuppressWarnings("null")
+
+
+  public static ListNode makeTestNode( int[] arr){
+
+    ListNode root = null;
+    for ( int i = arr.length-1; i >= 0 ;i-- ){
+      ListNode node = new ListNode(arr[i],root);
+      root=node;
+    }
+
+    return root;
+  }
+
 
   public static void main( String[] args ) {
 
@@ -19,15 +32,35 @@ public class ListNodeMergeSort {
     System.out.println( "finished : " + rootB );
     System.out.println( "--------------------------------" );
 
-    ListNode test = mergeTwoLists( rootA , new ListNode( 0 ) );
 
-    @SuppressWarnings("all") ListNode test2 = mergeTwoLists( null , null );
+    AtomicInteger index = new AtomicInteger();
 
-//    System.out.println(test);
-    //  System.out.println(test2);
 
-    ListNode find = findNodeValue( rootA , 4 );
-    System.out.println( find );
+    int[] elementA = new int[]{1,2,4};
+    int[] elementB = new int[]{1,3,4};
+    ListNode list1 = makeTestNode( elementA );
+    ListNode list2 = makeTestNode( elementB );
+
+
+    ListNode case1 = mergeTwoLists( list1,list2 );
+    ListNode case2 = mergeTwoLists( null, null );
+    ListNode case3 = mergeTwoLists( null, new ListNode( 0 ) );
+
+
+    System.out.printf("\n === Test Case %d : === \n",index.getAndIncrement());
+    System.out.println(case1);
+
+    System.out.printf("\n === Test Case %d : === \n",index.getAndIncrement());
+    System.out.println(case2);
+
+    System.out.printf("\n === Test Case %d : === \n",index.getAndIncrement());
+    System.out.println(case3);
+
+
+
+
+
+
 
   }
 
@@ -44,25 +77,41 @@ public class ListNodeMergeSort {
   }
 
   public static ListNode mergeTwoLists( ListNode list1 , ListNode list2 ) {
-    if ( list1 == null || list2 == null ) {
-      return ( list1 != null ) ? list1 : list2;
-    }
 
-    //리스트가 없는경우 종료조건
+//    if ( list1 == null || list2 == null ) { //리스트가 하나 또는 두개가 빈 경우
+//      return ( list1 != null ) ? list1 : list2; // 둘중 널이 아닌 리스트나 둘다 널일 경우 반환
+//    }
+
     ListNode memo = new ListNode();
     ListNode current = memo;
+    if ( list1 == null ) {
+      current = list2;
+      return current;
+    }
 
+    while (list1 != null && list2 != null) {
 
-    while ( list1 != null && list2 != null ) {
-      if ( list1.val < list2.val ) {
-        current = list1;
-      }
-
-      return current.next = list1;
+      current.next = list1.val > list2.val ? list1 : list2;
+      list1= list1.next;
+      list2= list2.next;
+      current=current.next;
+//      if (list1.val > list2.val) {
+//        System.out.print("\n >>>> ");
+//        System.out.println(list2);
+//        current.next = list2;
+//        list2 = list2.next;
+//      } else {
+//        current.next = list1;
+//        list1 = list1.next;
+//      }
+//      current = current.next;
     }
 
 
-    return memo.next;
+  //  current.next = (list1 != null) ? list1 : list2;
+
+
+    return current;
   }
 
 
