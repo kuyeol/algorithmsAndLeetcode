@@ -1,7 +1,7 @@
 # 🚀 High-Efficiency Algorithm Study Plan
 
-> **최소 시간으로 최대 효율**을 내기 위한 알고리즘 학습 로드맵입니다.  
-> `Blind 75`와 `NeetCode 150`을 기반으로, 실무 및 코딩 테스트에 가장 빈출되는 **핵심 패턴(Archetype)** 문제만을 엄선했습니다.
+> **최소 시간으로 최대 효율**을 위한 알고리즘 학습 로드맵 
+> `Blind 75`와 `NeetCode 150 기반, 실무 및 코딩 테스트에 가장 빈출되는 **핵심 패턴(Archetype)** 문제
 
 ## 💡 학습 전략 (Strategy)
 
