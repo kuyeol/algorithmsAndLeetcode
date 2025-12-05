@@ -18,6 +18,7 @@
 *기본 자료구조 활용 능력. 모든 문제의 기초.*
 
 - [ ] [1. Two Sum (Easy)](https://leetcode.com/problems/two-sum/) - `HashMap` 사용의 정석
+      
 > [!NOTE]
 > **핵심:** 브루트 포스($O(n^2)$)가 아닌 해시맵($O(n)$)을 사용하는 것이 관건.  
 > **접근:** 반복문을 돌며 `target - current_value`가 해시맵(Key: 숫자, Value: 인덱스)에 존재하는지 확인한다.
