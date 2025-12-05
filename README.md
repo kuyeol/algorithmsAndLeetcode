@@ -21,6 +21,26 @@
 > [!NOTE]
 > **핵심:** 브루트 포스($O(n^2)$)가 아닌 해시맵($O(n)$)을 사용하는 것이 관건.  
 > **접근:** 반복문을 돌며 `target - current_value`가 해시맵(Key: 숫자, Value: 인덱스)에 존재하는지 확인한다.
+```java
+class Solution {
+  public static int[] twoSum(int[] nums, int target) {
+    int len = nums.length;
+    for (int i = 0; i < len - 1; i++) {
+      int a = nums[i];
+      for (int j = i + 1; j < len; j++) {
+        int bb = nums[j];
+        if (a + bb == target) {
+          return new int[] { i, j };
+        }
+      }
+    }
+    return new int[0];
+  }
+}
+```
+
+
+
 
 - [ ] [49. Group Anagrams (Medium)](https://leetcode.com/problems/group-anagrams/) - 정렬과 해시의 조합
 > [!NOTE]
