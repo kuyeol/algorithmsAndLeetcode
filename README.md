@@ -156,12 +156,68 @@ public List<List<String>> groupAnagrams(String[] strs) {
 ```
 
 ---
-### 238_Product of Array Except Self (Medium)
+# 238_Product of Array Except Self (Medium)
+> [!warning]
+> 복습 필요
+> - 배열을 순회 없이 분리 연산
+> - 누적 합/곱 (Prefix Sum / Prefix Product)
+> - Dynamic Programming
 
 - [ ] [238. Product of Array Except Self (Medium)](https://leetcode.com/problems/product-of-array-except-self/) - `O(n)` 사고력 (나눗셈 금지)
 > [!NOTE]
 > **핵심:** 나눗셈을 쓰지 않고 자기 자신을 제외한 곱을 구하는 방법 (Prefix & Suffix).  
 > **접근:** 왼쪽에서부터 누적 곱을 구한 배열과, 오른쪽에서부터 누적 곱을 구한 값을 곱해서 한 번에 계산한다. 공간 복잡도 $O(1)$(결과 배열 제외) 최적화까지 고민해볼 것.
+
+
+## Incorrect Code
+```java
+//while
+ public int[] productExceptSelf_01(int[] nums) {
+        int[] result = new int[nums.length];
+        int prev;
+        int current;
+        int next;
+        int count = 0;
+        prev = count - 1;
+        next = count + 1;
+        int pow = 1;
+        while (0 <= prev) {
+            pow = pow * nums[prev];
+            if (pow == 0) {
+                break;
+            }
+            prev--;
+        }
+        while (next < nums.length) {
+            pow = pow * nums[next];
+            if (pow == 0) {
+                break;
+            }
+            next++;
+        }
+        result[count++] = pow;
+
+        return result;
+    }
+//for
+    public static int[] productExceptSelf(int[] nums) {
+        int[] result = new int[nums.length];
+        for (int i = 0; i < nums.length; i++) {
+            int pow = 1;
+            for (int j = 0; j < nums.length; j++) {
+                if (j != i) {
+                    pow = nums[j] * pow;
+                }
+            }
+            result[i] = pow;
+        }
+
+        return result;
+    }
+```
+
+
+
 
 
 ## 2. 투 포인터 & 슬라이딩 윈도우 (Two Pointers & Sliding Window)
