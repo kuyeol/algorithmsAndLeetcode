@@ -5,7 +5,7 @@
 먼저 기본적인 "누적해서 더하기"와 "왼쪽 vs 오른쪽 비교하기"를 연습.
 
 ### 1. Running Sum of 1d Array (LeetCode 1480) [easy]
-- [ ] [1. Running Sum of 1d Array](https://leetcode.com/problems/running-sum-of-1d-array/)
+- [x] [1. Running Sum of 1d Array](https://leetcode.com/problems/running-sum-of-1d-array/)
 
 **핵심:** `answer[i] = nums[0] + ... + nums[i]`
 **추천 이유:** 가장 기초적인 누적 합(Prefix Sum) 문제. 반복문 하나로 값을 누적시키는 감각 숙달.
