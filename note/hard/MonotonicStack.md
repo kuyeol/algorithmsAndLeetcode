@@ -14,7 +14,7 @@ Output :
 ```
 
 ```java
-public static int largestRectangleArea1(int[] heights, String s) { 
+public static int largestRectangleArea1(int[] heights) { 
     int n = heights.length;                                        
     int[] stack = new int[n];                                      
     int top = -1;                                                  
