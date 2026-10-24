@@ -47,38 +47,43 @@ public static int largestRectangleArea1(int[] heights) {
 
 ```java
 
-    public static int largestRectangleArea(int[] data) {
+     public static int largestRectangleArea(int[] data) {
         final int length = data.length;
         final StackH stackH = new StackH(data);
         int maxArea = 0;
         for (int i = 0; i <= length; i++) {
             while (!stackH.isEmpty() && stackH.isDecrease(i)) {
-                maxArea = Math.max(maxArea, stackH.getArea(i));
+                maxArea = Math.max(maxArea, stackH.getPopAndGetArea(i));
             }
             stackH.push(i);
         }
         return maxArea;
     }
 
-
-   static class StackH {
-        private int[] stack;
+    static class StackH {
         private final int[] data;
+        private final int[] stack;
+
         private int top = -1;
-        private final int length;
 
         public StackH(int[] data) {
-            this.length = data.length ;
             this.data = data;
-            this.stack = new int[length+1];
+            this.stack = new int[data.length + 1];
         }
 
-        public boolean isDecrease(int i) {
-            return dataPeek() > ((i == length) ? 0 : data[i]);
+        public boolean isEmpty() {
+            return top < 0;
         }
 
-        public int getArea(int i) {
-            return pop() * getWid…(int i) {
+        public int getPopAndGetArea(int i) {
+            return pop() * getWidth(i);
+        }
+
+        public boolean isDecrease(int i){
+            return dataPeek()>((i == data.length) ? 0 : data[i]);
+        }
+
+        public int getWidth(int i) {
             if (top == -1) {
                 return i;
             }
@@ -102,7 +107,8 @@ public static int largestRectangleArea1(int[] heights) {
         }
 
         public void push(int i) {
-            this.stack[++top] = i;
+            top++;
+            this.stack[top] = i;
         }
 
     }
