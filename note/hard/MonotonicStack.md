@@ -13,6 +13,10 @@ Output :
   10
 ```
 
+- 기본 알고리즘과 객체 구현 알고리즘의 메모리,속도의 차이는 미미함
+
+## 기본 알고리즘
+
 ```java
 public static int largestRectangleArea1(int[] heights) { 
     int n = heights.length;                                        
@@ -35,4 +39,52 @@ public static int largestRectangleArea1(int[] heights) {
     }                                                              
     return maxArea;                                                
 }                                                                  
+```
+
+## 객체 구현 알고리즘
+
+```java
+
+    public static int largestRectangleArea(int[] data) {
+        final int length = data.length;
+        final StackH stackH = new StackH(data);
+        int maxArea = 0;
+        for (int i = 0; i <= length; i++) {
+            int height = (i == length) ? 0 : data[i];
+            while (stackH.size() >= 0 && stackH.dataPeek() > height) {
+                maxArea = Math.max(maxArea, stackH.getArea(i));
+            }
+            stackH.push(i);
+        }
+        return maxArea;
+    }
+
+    static cl…(int i) {
+            if (top == -1) {
+                return i;
+            }
+            return i - peek() - 1;
+        }
+
+        public int size() {
+            return top;
+        }
+
+        public int dataPeek() {
+            return data[stack[top]];
+        }
+
+        public int peek() {
+            return stack[top];
+        }
+
+        public int pop() {
+            return data[stack[top--]];
+        }
+
+        public void push(int i) {
+            this.stack[++top] = i;
+        }
+
+    }
 ```
