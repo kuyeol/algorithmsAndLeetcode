@@ -52,8 +52,7 @@ public static int largestRectangleArea1(int[] heights) {
         final StackH stackH = new StackH(data);
         int maxArea = 0;
         for (int i = 0; i <= length; i++) {
-            int height = (i == length) ? 0 : data[i];
-            while (stackH.size() >= 0 && stackH.dataPeek() > height) {
+            while (!stackH.isEmpty() && stackH.isDecrease(i)) {
                 maxArea = Math.max(maxArea, stackH.getArea(i));
             }
             stackH.push(i);
@@ -61,7 +60,25 @@ public static int largestRectangleArea1(int[] heights) {
         return maxArea;
     }
 
-    static cl…(int i) {
+
+   static class StackH {
+        private int[] stack;
+        private final int[] data;
+        private int top = -1;
+        private final int length;
+
+        public StackH(int[] data) {
+            this.length = data.length ;
+            this.data = data;
+            this.stack = new int[length+1];
+        }
+
+        public boolean isDecrease(int i) {
+            return dataPeek() > ((i == length) ? 0 : data[i]);
+        }
+
+        public int getArea(int i) {
+            return pop() * getWid…(int i) {
             if (top == -1) {
                 return i;
             }
@@ -89,4 +106,5 @@ public static int largestRectangleArea1(int[] heights) {
         }
 
     }
+
 ```
